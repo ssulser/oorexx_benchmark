@@ -7,7 +7,7 @@ bad  = 'A94711-Winterthur'
 
 matches = 0
 
-do i = 1 to 1000000
+do i = 1 for 1000000
     if i // 2 = 1 then
         s = good
     else

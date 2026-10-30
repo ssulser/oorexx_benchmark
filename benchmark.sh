@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-RUNS="${RUNS:-7}"
+RUNS="${RUNS:-2}"
 STARTUP_RUNS="${STARTUP_RUNS:-200}"
 PERL="${PERL:-perl}"
 REXX="${REXX:-rexx}"

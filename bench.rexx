@@ -1,12 +1,12 @@
 /* ooRexx benchmark */
-numeric digits 20
+numeric digits 122
 
 parse arg test path
 
 select
     when test = 'cpu' then do
         sum = 0
-        do i = 1 to 5000000
+        do i = 1 for 5000000
             sum = sum + (i // 97)
         end
         say sum
@@ -26,12 +26,12 @@ select
     when test = 'array' then do
         a = .array~new(200000)
 
-        do i = 1 to 200000
+        do i = 1 for 200000
             a[i] = 'record-' || right(i - 1, 8, '0') || '-' || copies('x', 32)
         end
 
         sum = 0
-        do i = 1 to 200000
+        do i = 1 for 200000
             sum = sum + length(a[i])
         end
         say sum
@@ -40,13 +40,13 @@ select
     when test = 'lookup' then do
         h = .table~new
 
-        do i = 1 to 100000
+        do i = 1 for 100000
             key = 'K' || i
             h~put(i, key)
         end
 
         sum = 0
-        do i = 1 to 2000000
+        do i = 1 for 2000000
             key = 'K' || ((i // 100000) + 1)
             sum = sum + h~at(key)
         end
@@ -73,7 +73,7 @@ select
         end
 
         call stream path, 'c', 'open write replace'
-        do i = 1 to 200000
+        do i = 1 for 200000
             line = 'record-' || right(i, 8, '0') || '-The quick brown fox jumps over the lazy dog'
             call lineout path, line
         end
