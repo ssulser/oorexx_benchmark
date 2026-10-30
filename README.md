@@ -1,4 +1,10 @@
-# Perl vs ooRexx benchmark v4
+# Perl vs ooRexx benchmark v5
+
+Changes from v4:
+
+- Changed do loops from 'do i = 1 to xxxxx' to 'do i = 1 for xxxxxx' as this was
+  said to perform better in old REXX
+
 
 Changes from v3:
 
