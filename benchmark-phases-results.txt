@@ -1,0 +1,21 @@
+Perl: 5.34.1
+ooRexx: Open Object Rexx Version 5.3.0 r13326
+Machine: Darwin arm64; macOS: 27.2
+Runs: 11 + 1 warm-up per language; alternating measured order
+
+Internal phases: elapsed seconds, excluding startup; median and IQR.
+Inputs are prepared before array_build/table_build; scan and lookup use 20 passes.
+RSS belongs to the whole process and is not assigned to individual phases.
+Language Phase           elapsed_s        IQR_s
+Perl    records          0.032913     0.000698
+ooRexx  records          0.137562     0.020021
+Perl    array_build      0.007186     0.000321
+ooRexx  array_build      0.020081     0.001317
+Perl    array_scan       0.053589     0.002415
+ooRexx  array_scan       0.776081     0.062786
+Perl    keys             0.005933     0.000209
+ooRexx  keys             0.033451     0.002761
+Perl    table_build      0.012344     0.001009
+ooRexx  table_build      0.011149     0.000908
+Perl    lookup           0.060312     0.002542
+ooRexx  lookup           0.413651     0.034631

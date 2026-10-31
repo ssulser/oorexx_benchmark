@@ -2,7 +2,8 @@
 use strict;
 use warnings;
 
-my ($test, $path) = @ARGV;
+my ($test, $path, $size) = @ARGV;
+die "SIZE must be a positive integer\n" if defined($size) && $size !~ /\A[1-9][0-9]*\z/;
 die "usage: $0 TEST [PATH]\n" unless defined $test;
 
 if ($test eq 'cpu') {
@@ -24,12 +25,19 @@ elsif ($test eq 'strings') {
 }
 elsif ($test eq 'array') {
     my @a;
-    for my $i (0 .. 199_999) {
+    for my $i (0 .. ($size // 200_000) - 1) {
         $a[$i] = sprintf('record-%08d-%s', $i, 'x' x 32);
     }
     my $sum = 0;
     $sum += length($_) for @a;
     print "$sum\n";
+}
+elsif ($test eq 'table') {
+    my %h;
+    for my $i (1 .. ($size // 100_000)) {
+        $h{"K$i"} = $i;
+    }
+    print scalar(keys %h), "\n";
 }
 elsif ($test eq 'lookup') {
     my %h;

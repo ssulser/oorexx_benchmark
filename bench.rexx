@@ -1,7 +1,13 @@
 /* ooRexx benchmark */
-numeric digits 122
+numeric digits 15
 
-parse arg test path
+parse arg test path size
+if size = '' then do
+    if test = 'table' then size = 100000
+    else size = 200000
+end
+if datatype(size, 'W') = 0 then exit 2
+if size < 1 then exit 2
 
 select
     when test = 'cpu' then do
@@ -24,17 +30,26 @@ select
     end
 
     when test = 'array' then do
-        a = .array~new(200000)
+        a = .array~new(size)
 
-        do i = 1 for 200000
+        do i = 1 for size
             a[i] = 'record-' || right(i - 1, 8, '0') || '-' || copies('x', 32)
         end
 
         sum = 0
-        do i = 1 for 200000
+        do i = 1 for size
             sum = sum + length(a[i])
         end
         say sum
+    end
+
+    when test = 'table' then do
+        h = .table~new
+        do i = 1 for size
+            key = 'K' || i
+            h~put(i, key)
+        end
+        say h~items
     end
 
     when test = 'lookup' then do

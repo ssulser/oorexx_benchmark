@@ -1,0 +1,13 @@
+Perl: 5.34.1
+ooRexx: Open Object Rexx Version 5.3.0 r13326
+Machine: Darwin arm64; macOS: 27.2
+Runs: 11 + 1 warm-up per language; alternating measured order
+
+I/O phases: 200,000 lines / 12,000,000 bytes; internal elapsed seconds.
+Write: preformatted records, open/write/close; no fsync durability guarantee.
+Read: prepared cached input, open/read/count/close; includes line processing.
+Language Phase           elapsed_s        IQR_s
+Perl    io_write         0.011542     0.000524
+ooRexx  io_write         0.051119     0.001328
+Perl    io_read          0.014455     0.000211
+ooRexx  io_read          0.113323     0.002031

@@ -1,0 +1,41 @@
+Perl: 5.34.1
+ooRexx: Open Object Rexx Version 5.3.0 r13326
+Machine: Darwin arm64; macOS: 27.2
+Runs: 11 + 1 warm-up per language; alternating measured order
+Startup: minimal scripts; median and IQR in ms/start (includes shell overhead)
+Perl 2.650 0.075
+ooRexx 4.900 0.275
+
+Workloads: whole-process time; RSS includes interpreter and transient allocations.
+Each metric shows median and IQR. RSS unit: MiB. noop is dispatcher baseline.
+Language Test         Size     real_s        IQR     user_s        IQR      sys_s        IQR    RSS_MiB        IQR
+Perl    noop            1      0.000      0.000      0.000      0.000      0.000      0.000      4.406      0.023
+ooRexx  noop            1      0.000      0.000      0.000      0.000      0.000      0.000      6.047      0.031
+Perl    cpu             1      0.090      0.000      0.090      0.005      0.000      0.000      4.375      0.062
+ooRexx  cpu             1      0.170      0.010      0.160      0.000      0.000      0.000     17.859      0.031
+Perl    strings         1      0.090      0.010      0.090      0.000      0.000      0.000      4.344      0.047
+ooRexx  strings         1      0.070      0.000      0.070      0.000      0.000      0.000     17.875      0.016
+Perl    array      200000      0.040      0.000      0.030      0.005      0.000      0.000     26.594      0.125
+ooRexx  array      200000      0.160      0.005      0.150      0.005      0.000      0.000     76.094      0.031
+Perl    lookup     100000      0.160      0.005      0.150      0.005      0.000      0.000     25.453      0.086
+ooRexx  lookup     100000      0.370      0.015      0.370      0.020      0.000      0.000     46.000      0.008
+Perl    parse           1      0.280      0.000      0.280      0.010      0.000      0.000      4.344      0.047
+ooRexx  parse           1      0.180      0.000      0.170      0.005      0.000      0.000     17.828      0.016
+Perl    io         200000      0.050      0.000      0.040      0.000      0.000      0.000      4.406      0.047
+ooRexx  io         200000      0.160      0.000      0.140      0.000      0.010      0.000     17.938      0.016
+Perl    regex           1      0.220      0.000      0.210      0.005      0.000      0.000      4.328      0.047
+ooRexx  regex           1      0.310      0.000      0.310      0.000      0.000      0.000     18.125      0.000
+
+Memory scaling: retained arrays/tables; time includes construction and validation.
+Perl    array       10000      0.000      0.000      0.000      0.000      0.000      0.000      5.688      0.125
+ooRexx  array       10000      0.000      0.000      0.000      0.000      0.000      0.000     14.188      0.016
+Perl    table       10000      0.000      0.000      0.000      0.000      0.000      0.000      6.312      0.031
+ooRexx  table       10000      0.000      0.000      0.000      0.000      0.000      0.000      9.250      0.016
+Perl    array      100000      0.020      0.000      0.020      0.000      0.000      0.000     15.688      0.055
+ooRexx  array      100000      0.060      0.000      0.050      0.000      0.000      0.000     40.688      0.023
+Perl    table      100000      0.020      0.000      0.020      0.000      0.000      0.000     25.469      0.016
+ooRexx  table      100000      0.010      0.000      0.010      0.000      0.000      0.000     36.438      0.031
+Perl    array     1000000      0.190      0.010      0.180      0.005      0.000      0.010    116.984      0.016
+ooRexx  array     1000000      1.380      0.025      1.340      0.025      0.030      0.005    363.484      0.016
+Perl    table     1000000      0.440      0.010      0.420      0.000      0.010      0.000    176.281      0.109
+ooRexx  table     1000000      0.210      0.000      0.190      0.010      0.010      0.000    317.906      0.031
